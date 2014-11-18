@@ -1,0 +1,35 @@
+#!/bin/sh -ex
+
+. inc/common
+
+juju-log "Installing software"
+
+apt-get update
+apt-get -y install --no-install-suggests --no-install-recommends  apache2 php5-gd libapache2-mod-php5 mysql-client-core-5.5 php5-mysql pwgen
+
+a2enmod php5 headers
+a2dissite 000-default
+
+service apache2 restart
+
+juju-log "Download"
+OC_TARBALL="https://github.com/opencart/opencart/archive/1.5.6.4.tar.gz"
+OC_MD5SUM="a783a14939afaaf33040a1decffccbae"
+curl -vv -L $OC_TARBALL > /tmp/opencart.tar.gz
+
+juju-log "Extract"
+mkdir -p $install_path
+tar --strip-components=2 --wildcards -C $install_path -zxf /tmp/opencart.tar.gz opencart-*/upload
+rm -f /tmp/opencart.tar.gz
+mv $install_path/.htaccess.txt $install_path/.htaccess
+
+(
+patch -d $install_path -p1 < files/opencart/default_db.patch
+)
+
+# Secret key for configuring Joomla
+#secret_key=`pwgen 32 1`
+#sed -i "s|public \$secret = '.*';|public \$secret = '"$secret_key"';|g" $install_path/installation/configuration.php-dist
+
+# Set better file permissions
+set_permissions

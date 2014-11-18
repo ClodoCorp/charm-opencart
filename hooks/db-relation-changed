@@ -1,0 +1,45 @@
+#!/bin/sh -ex
+
+# Boiler plate code to print context of this script
+juju-log $JUJU_REMOTE_UNIT modified its settings
+juju-log Relation settings:
+relation-get
+juju-log Relation members:
+relation-list
+
+. inc/common
+
+# If there is a config file already, Joomla is already installed & config'ed
+if [ -f "$config_file_path" ]; then
+	# TODO: Update the config file with new DB values even 
+	#       if joomla is alredy installed
+	juju-log "Joomla is already setup, just silently going away"
+	exit 0
+fi
+
+# Relation properties
+database=`relation-get database`
+user=`relation-get user`
+password=`relation-get password`
+host=`relation-get private-address`
+
+# Sanity checks
+## If there is no database name defined, die
+if [ -z "$database" ] ; then
+    exit 0
+fi
+
+juju-log Config
+sed -i "s|PLACEHOLDER_DB_HOST|$host|g" $install_path/installation/model/forms/database.xml
+sed -i "s|PLACEHOLDER_DB_USER|$user|g" $install_path/installation/model/forms/database.xml
+sed -i "s|PLACEHOLDER_DB_PASS|$password|g" $install_path/installation/model/forms/database.xml
+sed -i "s|PLACEHOLDER_DB_NAME|$database|g" $install_path/installation/model/forms/database.xml
+sed -i "s|PLACEHOLDER_DB_PREFIX|jos_|g" $install_path/installation/model/forms/database.xml
+
+# least access permissions for the configuration file
+#chown www-data:www-data $config_file_path
+#chmod 0640 $config_file_path
+
+juju-log "Opening port 80"
+open-port 80/tcp
+open-port 443/tcp

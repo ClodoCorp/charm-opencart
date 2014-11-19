@@ -12,7 +12,7 @@ relation-list
 # If there is a config file already, Joomla is already installed & config'ed
 if [ -f "$config_file_path" ]; then
 	# TODO: Update the config file with new DB values even 
-	#       if joomla is alredy installed
+	#       if opencart is alredy installed
 	juju-log "Joomla is already setup, just silently going away"
 	exit 0
 fi

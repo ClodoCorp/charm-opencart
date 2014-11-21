@@ -1,30 +1,7 @@
 diff --git a/install/controller/step_3.php b/install/controller/step_3.php
-index 29ef404..19cf722 100644
+index 29ef404..1452c0a 100644
 --- a/install/controller/step_3.php
 +++ b/install/controller/step_3.php
-@@ -97,19 +97,19 @@ class ControllerStep3 extends Controller {
- 		if (isset($this->error['db_host'])) {
- 			$this->data['error_db_host'] = $this->error['db_host'];
- 		} else {
--			$this->data['error_db_host'] = '';
-+			$this->data['error_db_host'] = 'INSTL_DATABASE_HOST_LABEL';
- 		}
- 
- 		if (isset($this->error['db_user'])) {
- 			$this->data['error_db_user'] = $this->error['db_user'];
- 		} else {
--			$this->data['error_db_user'] = '';
-+			$this->data['error_db_user'] = 'INSTL_DATABASE_USER_LABEL';
- 		}
- 
- 		if (isset($this->error['db_name'])) {
- 			$this->data['error_db_name'] = $this->error['db_name'];
- 		} else {
--			$this->data['error_db_name'] = '';
-+			$this->data['error_db_name'] = 'INSTL_DATABASE_NAME_LABEL';
- 		}
- 
- 		if (isset($this->error['db_prefix'])) {
 @@ -147,25 +147,25 @@ class ControllerStep3 extends Controller {
  		if (isset($this->request->post['db_host'])) {
  			$this->data['db_host'] = $this->request->post['db_host'];

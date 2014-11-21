@@ -30,11 +30,10 @@ if [ -z "$database" ] ; then
 fi
 
 juju-log Config
-sed -i "s|PLACEHOLDER_DB_HOST|$host|g" $install_path/installation/model/forms/database.xml
-sed -i "s|PLACEHOLDER_DB_USER|$user|g" $install_path/installation/model/forms/database.xml
-sed -i "s|PLACEHOLDER_DB_PASS|$password|g" $install_path/installation/model/forms/database.xml
-sed -i "s|PLACEHOLDER_DB_NAME|$database|g" $install_path/installation/model/forms/database.xml
-sed -i "s|PLACEHOLDER_DB_PREFIX|jos_|g" $install_path/installation/model/forms/database.xml
+sed -i "s|INSTL_DATABASE_HOST_LABEL|$host|g" $install_path/install/controller/step_3.php
+sed -i "s|INSTL_DATABASE_USER_LABEL|$user|g" $install_path/install/controller/step_3.php
+sed -i "s|INSTL_DATABASE_PASSWORD_LABEL|$password|g" $install_path/install/controller/step_3.php
+sed -i "s|INSTL_DATABASE_NAME_LABEL|$database|g" $install_path/install/controller/step_3.php
 
 # least access permissions for the configuration file
 #chown www-data:www-data $config_file_path

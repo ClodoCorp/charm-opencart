@@ -30,10 +30,10 @@ if [ -z "$database" ] ; then
 fi
 
 juju-log Config
-sed -i "s|INSTL_DATABASE_HOST_LABEL|$host|g" $install_path/install/view/template/step_3.tpl
-sed -i "s|INSTL_DATABASE_USER_LABEL|$user|g" $install_path/install/view/template/step_3.tpl
-sed -i "s|INSTL_DATABASE_PASSWORD_LABEL|$password|g" $install_path/install/view/template/step_3.tpl
-sed -i "s|INSTL_DATABASE_NAME_LABEL|$database|g" $install_path/install/view/template/step_3.tpl
+sed -i "s|INSTL_DATABASE_HOST_LABEL|$host|g" $install_path/install/controller/step_3.php
+sed -i "s|INSTL_DATABASE_USER_LABEL|$user|g" $install_path/install/controller/step_3.php
+sed -i "s|INSTL_DATABASE_PASSWORD_LABEL|$password|g" $install_path/install/controller/step_3.php
+sed -i "s|INSTL_DATABASE_NAME_LABEL|$database|g" $install_path/install/controller/step_3.php
 
 # least access permissions for the configuration file
 #chown www-data:www-data $config_file_path

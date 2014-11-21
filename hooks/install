@@ -25,8 +25,6 @@ mkdir -p $install_path
 tar --strip-components=2 --wildcards -C $install_path -zxf /tmp/opencart.tar.gz opencart-*/upload
 rm -f /tmp/opencart.tar.gz
 mv $install_path/.htaccess.txt $install_path/.htaccess
-mv $install_path/config-dist.php $install_path/config.php
-mv $install_path/admin/config-dist.php $install_path/admin/config.php
 
 (
 patch -d $install_path -p1 < files/opencart/default_db.patch

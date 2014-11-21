@@ -14,6 +14,11 @@ if [ -f "$config_file_path" ]; then
 	# TODO: Update the config file with new DB values even 
 	#       if opencart is alredy installed
 	juju-log "Joomla is already setup, just silently going away"
+    juju-log Config
+    sed -i "s|INSTL_DATABASE_HOST_LABEL|$host|g" $install_path/install/controller/step_3.php
+    sed -i "s|INSTL_DATABASE_USER_LABEL|$user|g" $install_path/install/controller/step_3.php
+    sed -i "s|INSTL_DATABASE_PASSWORD_LABEL|$password|g" $install_path/install/controller/step_3.php
+    sed -i "s|INSTL_DATABASE_NAME_LABEL|$database|g" $install_path/install/controller/step_3.php
 	exit 0
 fi
 

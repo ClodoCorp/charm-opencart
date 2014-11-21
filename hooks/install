@@ -10,6 +10,9 @@ apt-get -y install --no-install-suggests --no-install-recommends  apache2 php5-g
 a2enmod php5 headers
 a2dissite 000-default
 
+php5enmod mcrypt
+php5enmod curl
+
 service apache2 restart
 
 juju-log "Download"

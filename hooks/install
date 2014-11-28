@@ -6,7 +6,7 @@ juju-log "Installing software"
 
 ver=$(config-get [version])
 
-if [$ver=2.0.0.0] then
+if [ $ver=2.0.0.0 ]; then
    juju-log "version 2.0.0.0 not instal"
    echo "VERSION 2.0.0.0"
    exit 0

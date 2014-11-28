@@ -5,8 +5,6 @@ hostname=`unit-get public-address`
 private_name=`unit-get private-address`
 
 install_path="/srv/www/htdocs"
-config_file_path="$install_path/config.php"
-initdb_sql="$install_path/install/opencart.sql"
 
 # This file should contain common function definitions
 set_permissions() {
@@ -18,7 +16,7 @@ set_permissions() {
 		find $install_path -type f -exec chmod 644 {} \;
 		find $install_path -type d -exec chmod 755 {} \;
 	else
-		juju-log "Joomla is not installed at $install_path"
+		juju-log "OpenCart is not installed at $install_path"
 		exit 1
 	fi
 }

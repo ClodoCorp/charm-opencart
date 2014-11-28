@@ -4,6 +4,14 @@
 
 juju-log "Installing software"
 
+ver=$(config-get [version])
+
+if [$ver=2.0.0.0] then
+   juju-log "version 2.0.0.0 not instal"
+   echo "VERSION 2.0.0.0"
+   exit 0
+fi
+
 apt-get update
 apt-get -y install --no-install-suggests --no-install-recommends  apache2 php5-gd libapache2-mod-php5 mysql-client-core-5.5 php5-mysql pwgen php5-curl php5-mcrypt exim4-daemon-light
 
@@ -34,7 +42,7 @@ mv $install_path/.htaccess.txt $install_path/.htaccess
 patch -d $install_path -p1 < files/opencart/default_db.patch
 )
 
-# Secret key for configuring Joomla
+# Secret key for configuring OpenCart
 #secret_key=`pwgen 32 1`
 #sed -i "s|public \$secret = '.*';|public \$secret = '"$secret_key"';|g" $install_path/installation/configuration.php-dist
 

@@ -37,7 +37,7 @@ unzip /tmp/opencart.zip opencart-2.0.0.0/upload/\* -d /tmp/opencart
 cp -fR /tmp/opencart/opencart-2.0.0.0/upload/* $install_path
 rm -f /tmp/opencart.zip
 
-mv $install_path/.htaccess.txt $install_path/.htaccess
+#mv $install_path/.htaccess.txt $install_path/.htaccess
 
 #(
 #patch -d $install_path -p1 < files/opencart/default_db.patch

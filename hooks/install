@@ -23,19 +23,25 @@ php5enmod curl
 service apache2 restart
 
 juju-log "Download"
-OC_TARBALL="https://github.com/opencart/opencart/archive/1.5.6.4.tar.gz"
-OC_MD5SUM="a783a14939afaaf33040a1decffccbae"
-curl -vv -L $OC_TARBALL > /tmp/opencart.tar.gz
+
+OC_TARBALL="http://www.opencart.com/index.php?route=download/download/download&download_id=37"
+
+curl -vv -L $OC_TARBALL > /tmp/opencart.zip
 
 juju-log "Extract"
+
 mkdir -p $install_path
-tar --strip-components=2 --wildcards -C $install_path -zxf /tmp/opencart.tar.gz opencart-*/upload
-rm -f /tmp/opencart.tar.gz
+mkdir -p /tmp/opencart
+
+unzip /tmp/opencart.zip opencart-2.0.0.0/upload/\* -d /tmp/opencart
+cp -fR /tmp/opencart/opencart-2.0.0.0/upload/* $install_path
+rm -f /tmp/opencart.zip
+
 mv $install_path/.htaccess.txt $install_path/.htaccess
 
-(
-patch -d $install_path -p1 < files/opencart/default_db.patch
-)
+#(
+#patch -d $install_path -p1 < files/opencart/default_db.patch
+#)
 
 # Secret key for configuring OpenCart
 #secret_key=`pwgen 32 1`

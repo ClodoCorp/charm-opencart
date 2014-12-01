@@ -8,7 +8,7 @@ ver=$(config-get [version])
 
 
 apt-get update
-apt-get -y install --no-install-suggests --no-install-recommends  apache2 php5-gd libapache2-mod-php5 mysql-client-core-5.5 php5-mysql pwgen php5-curl php5-mcrypt exim4-daemon-light
+apt-get -y install --no-install-suggests --no-install-recommends  apache2 php5-gd libapache2-mod-php5 mysql-client-core-5.5 php5-mysql pwgen php5-curl php5-mcrypt unzip exim4-daemon-light
 
 sed -i "s|dc_eximconfig_configtype='local'|dc_eximconfig_configtype='internet'|g" /etc/exim4/update-exim4.conf.conf
 

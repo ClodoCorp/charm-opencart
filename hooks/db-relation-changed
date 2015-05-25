@@ -9,11 +9,11 @@ relation-list
 
 . inc/common
 
-# If there is a config file already, Joomla is already installed & config'ed
+# If there is a config file already, OpenCart is already installed & config'ed
 if [ -f "$config_file_path" ]; then
-	# TODO: Update the config file with new DB values even 
-	#       if joomla is alredy installed
-	juju-log "Joomla is already setup, just silently going away"
+	# TODO: Update the config file with new DB values even
+	#       if OpenCart is alredy installed
+	juju-log "OpenCart is already setup, just silently going away"
 	exit 0
 fi
 
@@ -40,6 +40,5 @@ sed -i "s|PLACEHOLDER_DB_PREFIX|jos_|g" $install_path/installation/model/forms/d
 #chown www-data:www-data $config_file_path
 #chmod 0640 $config_file_path
 
-juju-log "Opening port 80"
-open-port 80/tcp
-open-port 443/tcp
+juju-log "Opening port 8080"
+open-port 8080/tcp

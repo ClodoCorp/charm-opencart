@@ -12,7 +12,3 @@ requires:
 provides:
   website:
     interface: http
-peers:
-  loadbalancer:
-    interface: reversenginx
-    

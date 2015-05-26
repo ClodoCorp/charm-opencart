@@ -8,10 +8,10 @@ install_path="/srv/www/htdocs"
 
 # This file should contain common function definitions
 set_permissions() {
-	# Setting permissions as recommended by: 
+	# Setting permissions as recommended by:
 	# http://docs.joomla.org/Security_Checklist/Hosting_and_Server_Setup
 	if [ -d $install_path ]; then
-    chown -R www-data:www-data $install_path  
+    chown -R www-data:www-data $install_path
 		chmod 750 $install_path
 		find $install_path -type f -exec chmod 644 {} \;
 		find $install_path -type d -exec chmod 755 {} \;

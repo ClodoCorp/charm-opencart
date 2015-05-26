@@ -15,4 +15,3 @@ provides:
 peers:
   loadbalancer:
     interface: reversenginx
-    

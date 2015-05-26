@@ -1,10 +1,8 @@
-Listen *:8080
-
-<VirtualHost *:8080>
+<VirtualHost *:80>
   ServerName localhost
   ServerAlias *
   ServerAdmin webmaster@localhost
-  
+
   UseCanonicalName Off
 
   DocumentRoot /srv/www/htdocs

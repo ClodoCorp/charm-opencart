@@ -27,7 +27,5 @@ if [ "x$engine" = "xapache" -o "x${engine}" = "xapache2" ]; then
 	echo "apache2" > .web-engine
 fi
 
-hooks/loadbalancer-rebuild
-
 juju-log "Restarting Services ..."
 hooks/restart

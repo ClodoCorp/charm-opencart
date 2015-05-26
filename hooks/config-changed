@@ -11,7 +11,6 @@ if [ "x$engine" = "xapache" -o "x${engine}" = "xapache2" ]; then
 		web_engine=`cat .web-engine`
 		service $web_engine stop
 	fi
-	apt-get -y purge nginx
 	apt-get --no-install-suggests --no-install-recommends install -y apache2 libapache2-mod-php5
 	service apache2 stop
 

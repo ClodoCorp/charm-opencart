@@ -24,9 +24,11 @@ service apache2 restart
 
 juju-log "Download"
 
-OC_TARBALL="http://www.opencart.com/index.php?route=download/download/download&download_id=37"
+# DDoS protection by CloudFlare
+#http://www.opencart.com/index.php?route=download/download/download&download_id=37
+OC_TARBALL="https://codeload.github.com/opencart/opencart/zip/2.0.0.0"
 
-curl -vv -L $OC_TARBALL > /tmp/opencart.zip
+curl -vv -L $OC_TARBALL -o /tmp/opencart.zip
 
 juju-log "Extract"
 
